@@ -1,0 +1,129 @@
+---
+title: 'Práctica 2: Cálculo de Pi'
+author: "David Charte"
+date: "Arquitecturas y Computación de Altas Prestaciones - UGR"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.width=6, fig.height=6, out.width='.5\\textwidth', out.height='.5\\textwidth')
+library(plotly)
+library(colorspace)
+```
+
+# Resultados obtenidos
+
+La siguiente tabla recoge los resultados obtenidos al ejecutar el programa de cálculo de $\pi$ en *atcgrid*. Los tiempos son medias de 3 ejecuciones, están medidos en segundos con precisión de nanosegundos. El tiempo total, `t_total`, es la suma de los tiempos de cálculo, comunicaciones entre procesos y creación y destrucción de procesos.
+
+
+```{r data}
+scala1 = read.csv("atcgrid.csv", header = T)
+scala2 = read.csv("atcgrid2.csv", header = T)
+scala3 = read.csv("atcgrid3.csv", header = T)
+all_scala = list(scala1[, 6:9], scala2[, 6:9], scala3[, 6:9])
+tmeans = Reduce(`+`, all_scala) / length(all_scala)
+
+scala = scala1
+scala[, 6:9] = tmeans
+
+scala$t_total = scala$t_calc + scala$t_comms + scala$t_create + scala$t_destroy
+
+scala_small = scala[scala$num_ints < 1e8,]
+```
+
+
+```{r speedup}
+seq_total = scala[scala$num_procs == 1,]$t_total
+scala$speedup = seq_total / scala$t_total
+```
+
+\scriptsize
+```{r show_table}
+show_scala = scala
+show_scala[,3:5] = format(show_scala[,3:5], scientific = T, digits = 4)
+show_scala[,11] = format(show_scala[, 11], digits = 4)
+knitr::kable(show_scala)
+```
+
+\normalsize
+
+\pagebreak
+
+# Gráficos
+
+## Ganancia
+
+La gráfica siguiente muestra la ganancia obtenida al ejecutar el programa con la carga de trabajo paralelizable máxima empleada, $10^9$ intervalos. 
+
+\centering
+
+```{r speedup_plots}
+sp = scala[scala$num_ints > 1e8,11]
+plot(x = unique(scala$num_procs), y = sp, type = "b", col = rainbow_hcl(length(unique(scala$num_procs))),
+     xlab = "Número de procesos",
+     ylab = "Speedup alcanzado")
+```
+
+\flushleft
+
+## Tiempo empleado
+
+Los siguientes gráficos muestran el tiempo total de ejecución en escala lineal (comparable con el número de procesos) y en escala logarítmica (comparable con el crecimiento de intervalos). 
+
+\centering
+
+```{r time_plots}
+t_total = matrix(scala$t_total, nrow = length(unique(scala$num_ints)))
+colnames(t_total) = unique(scala$num_procs)
+rownames(t_total) = unique(scala$num_ints)
+
+
+persp(x = 1:nrow(t_total),
+      y = unique(scala$num_procs),
+      z = t_total,
+      theta = -45,
+      phi = 45,
+      col = rainbow_hcl(40),
+      xlab = "Número de intervalos (log10)",
+      ylab = "Número de procesos",
+      zlab = "Tiempo total por proceso",
+      ticktype = "detailed")
+```
+
+```{r tim2}
+persp(x = 1:nrow(t_total),
+      y = unique(scala$num_procs),
+      z = log(t_total, base = 10),
+      theta = -45,
+      phi = 45,
+      col = rainbow_hcl(40),
+      xlab = "Número de intervalos (log10)",
+      ylab = "Número de procesos",
+      zlab = "Tiempo total por proceso (log10)",
+      ticktype = "detailed")
+```
+
+\flushleft
+
+## Evolución del error
+
+En el siguiente gráfico se muestra comparativamente la evolución del error conforme se aumenta el exponente del número de intervalos. El último gráfico muestra únicamente el error en el punto medio.
+
+\centering
+
+```{r error_plots}
+sequential = scala[scala$num_procs == 1,]
+err = sequential[, names(sequential) %in% c("err_excess", "err_defect", "err_middle")]
+matplot(err, type = "b", pch = 1, col = rainbow_hcl(3),
+        xlab = "Número de intervalos (log10)",
+        ylab = "Error en la estimación")
+legend("topright", legend = c("Exceso", "Defecto", "Medio"), col = rainbow_hcl(3), pch = 1)
+```
+
+```{r best_error_plot}
+plot(err$err_middle, type = "b", col = rainbow_hcl(3)[3],
+     xlab = "Número de intervalos (log10)",
+     ylab = "Error en la estimación")
+```
+
+\flushleft
