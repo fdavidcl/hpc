@@ -15,7 +15,9 @@ library(colorspace)
 
 ## ATCgrid
 
-La siguiente tabla recoge los resultados obtenidos al ejecutar el programa de cálculo de $\pi$ en *atcgrid*. Los tiempos son medias de 3 ejecuciones, están medidos en segundos con precisión de nanosegundos. El tiempo total, `t_total`, es la suma de los tiempos de cálculo, comunicaciones entre procesos y creación y destrucción de procesos.
+En ATCgrid se han realizado ejecuciones para distintos números de intervalos (de 10 a $10^9$), calculando todos los errores (por exceso, por defecto y en el punto medio), y dividiendo en 2, 3 y 6 procesos además de la ejecución secuencial.
+
+La siguiente tabla recoge los resultados obtenidos al ejecutar el programa. Los tiempos son medias de 3 ejecuciones, están medidos en segundos con precisión de nanosegundos. El tiempo total, `t_total`, es la suma de los tiempos de cálculo, comunicaciones entre procesos y creación y destrucción de procesos.
 
 
 ```{r data}
@@ -110,42 +112,43 @@ plot(x = unique(aula$num_procs), y = aula$speedup, type = "b", col = rainbow_hcl
 
 ## Tiempo empleado
 
-Los siguientes gráficos muestran el tiempo total de ejecución en escala lineal (comparable con el número de procesos) y en escala logarítmica (comparable con el crecimiento de intervalos). 
-
 ### ATCgrid
 
-```{r time_plots}
+Los siguientes gráficos muestran el tiempo total de ejecución en escala lineal (comparable con el número de procesos) y en escala logarítmica (comparable con el crecimiento de intervalos). 
+
+```{r time_plots, fig.width=7, fig.height=7}
 t_total = matrix(scala$t_total, nrow = length(unique(scala$num_ints)))
 colnames(t_total) = unique(scala$num_procs)
 rownames(t_total) = unique(scala$num_ints)
 
 
-persp(x = 1:nrow(t_total),
-      y = unique(scala$num_procs),
-      z = t_total,
-      theta = -45,
+persp(y = 1:nrow(t_total),
+      x = unique(scala$num_procs),
+      z = t(t_total),
+      theta = -30,
       phi = 45,
       col = rainbow_hcl(40),
-      xlab = "Número de intervalos (log10)",
-      ylab = "Número de procesos",
-      zlab = "Tiempo total por proceso",
+      ylab = "Nº intervalos (log10)",
+      xlab = "Nº procesos",
+      zlab = "Tiempo total",
       ticktype = "detailed")
 ```
-
-```{r tim2}
+```{r tim2, fig.width=7, fig.height=7}
 persp(x = 1:nrow(t_total),
       y = unique(scala$num_procs),
       z = log(t_total, base = 10),
-      theta = -45,
+      theta = -30,
       phi = 45,
       col = rainbow_hcl(40),
-      xlab = "Número de intervalos (log10)",
-      ylab = "Número de procesos",
-      zlab = "Tiempo total por proceso (log10)",
+      xlab = "Nº intervalos (log10)",
+      ylab = "Nº procesos",
+      zlab = "Tiempo total (log10)",
       ticktype = "detailed")
 ```
 
 ### Aula 2.9
+
+Este gráfico muestra la evolución del tiempo empleado con el aumento del número de procesos en el aula (el número de intervalos está fijo a $10^9$):
 
 ```{r tim3}
 plot(x = aula$num_procs,
@@ -155,6 +158,8 @@ plot(x = aula$num_procs,
      xlab = "Número de procesos",
      ylab = "Tiempo total por proceso")
 ```
+
+\pagebreak
 
 ## Evolución del error
 
