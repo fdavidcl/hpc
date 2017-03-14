@@ -2,7 +2,9 @@
 title: 'Práctica 2: Cálculo de $\pi$'
 author: "David Charte"
 date: "Arquitecturas y Computación de Altas Prestaciones - UGR"
-output: pdf_document
+output: 
+  pdf_document: 
+    number_sections: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -180,3 +182,6 @@ plot(err$err_middle, type = "b", col = rainbow_hcl(3)[3],
      ylab = "Error en la estimación")
 ```
 
+# Comentarios
+
+El código del programa y el que genera los gráficos y tablas anteriores está disponible para su consulta en el repositorio siguiente: <https://github.com/fdavidcl/hpc/tree/master/p2>.
