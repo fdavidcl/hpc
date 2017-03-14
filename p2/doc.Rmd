@@ -1,17 +1,19 @@
 ---
-title: 'Práctica 2: Cálculo de Pi'
+title: 'Práctica 2: Cálculo de $\pi$'
 author: "David Charte"
 date: "Arquitecturas y Computación de Altas Prestaciones - UGR"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, fig.width=6, fig.height=6, out.width='.5\\textwidth', out.height='.5\\textwidth')
+knitr::opts_chunk$set(echo = FALSE, fig.width=6, fig.height=6, out.width='.5\\textwidth', out.height='.5\\textwidth', fig.align = "center")
 library(plotly)
 library(colorspace)
 ```
 
 # Resultados obtenidos
+
+## ATCgrid
 
 La siguiente tabla recoge los resultados obtenidos al ejecutar el programa de cálculo de $\pi$ en *atcgrid*. Los tiempos son medias de 3 ejecuciones, están medidos en segundos con precisión de nanosegundos. El tiempo total, `t_total`, es la suma de los tiempos de cálculo, comunicaciones entre procesos y creación y destrucción de procesos.
 
@@ -20,42 +22,73 @@ La siguiente tabla recoge los resultados obtenidos al ejecutar el programa de c�
 scala1 = read.csv("atcgrid.csv", header = T)
 scala2 = read.csv("atcgrid2.csv", header = T)
 scala3 = read.csv("atcgrid3.csv", header = T)
-all_scala = list(scala1[, 6:9], scala2[, 6:9], scala3[, 6:9])
-tmeans = Reduce(`+`, all_scala) / length(all_scala)
 
-scala = scala1
-scala[, 6:9] = tmeans
+dfmean = function(dflist) {
+  times = lapply(dflist, function(d) d[, 6:9])
+  meantimes = Reduce(`+`, times) / length(times)
+  df = dflist[[1]]
+  df[, 6:9] = meantimes
+  df
+}
 
-scala$t_total = scala$t_calc + scala$t_comms + scala$t_create + scala$t_destroy
+scala = dfmean(list(scala1, scala2, scala3))
+
+add_total = function(df) {
+  df$t_total = df$t_calc + df$t_comms + df$t_create + df$t_destroy
+  df
+}
+scala = add_total(scala)
 
 scala_small = scala[scala$num_ints < 1e8,]
 ```
 
 
 ```{r speedup}
-seq_total = scala[scala$num_procs == 1,]$t_total
-scala$speedup = seq_total / scala$t_total
+add_speedup = function(df) {
+  seq_total = df[df$num_procs == 1,]$t_total
+  df$speedup = seq_total / df$t_total
+  df
+}
+scala = add_speedup(scala)
 ```
 
 \scriptsize
 ```{r show_table}
-show_scala = scala
-show_scala[,3:5] = format(show_scala[,3:5], scientific = T, digits = 4)
-show_scala[,11] = format(show_scala[, 11], digits = 4)
-knitr::kable(show_scala)
+show_table = function(table) {
+  show_scala = table
+  show_scala[,3:5] = format(show_scala[,3:5], scientific = T, digits = 4)
+  show_scala[,11] = format(show_scala[, 11], digits = 4)
+  knitr::kable(show_scala)
+}
+show_table(scala)
 ```
 
 \normalsize
 
 \pagebreak
 
+## Aula 2.9
+
+Se ha fijado el número de intervalos a $10^9$, por ser una carga de trabajo que permite alcanzar una buena ganancia al paralelizar. Nótese que se ha trabajado con 8 máquinas como máximo, luego la ejecución de 16 procesos se ha repartido a 2 por máquina (puede que se hayan ejecutado en distintos núcleos o en el mismo).
+
+```{r data29}
+all_aula = read.csv("aula_results.csv")
+aula = dfmean(list(all_aula[1:9, ], all_aula[10:18, ], all_aula[19:27, ]))
+aula = add_total(aula)
+aula = add_speedup(aula)
+aula = aula[, c(1, 6, 7, 8, 9, 10, 11)]
+knitr::kable(aula)
+```
+
 # Gráficos
 
 ## Ganancia
 
-La gráfica siguiente muestra la ganancia obtenida al ejecutar el programa con la carga de trabajo paralelizable máxima empleada, $10^9$ intervalos. 
+Las gráficas siguientes muestran la ganancia obtenida al ejecutar el programa con la carga de trabajo paralelizable máxima empleada, $10^9$ intervalos.
 
-\centering
+### ATCgrid
+
+
 
 ```{r speedup_plots}
 sp = scala[scala$num_ints > 1e8,11]
@@ -64,13 +97,22 @@ plot(x = unique(scala$num_procs), y = sp, type = "b", col = rainbow_hcl(length(u
      ylab = "Speedup alcanzado")
 ```
 
-\flushleft
+
+
+### Aula 2.9
+
+```{r speedup_plots2}
+plot(x = unique(aula$num_procs), y = aula$speedup, type = "b", col = rainbow_hcl(length(unique(aula$num_procs))),
+     xlab = "Número de procesos",
+     ylab = "Speedup alcanzado")
+```
+
 
 ## Tiempo empleado
 
 Los siguientes gráficos muestran el tiempo total de ejecución en escala lineal (comparable con el número de procesos) y en escala logarítmica (comparable con el crecimiento de intervalos). 
 
-\centering
+### ATCgrid
 
 ```{r time_plots}
 t_total = matrix(scala$t_total, nrow = length(unique(scala$num_ints)))
@@ -103,13 +145,20 @@ persp(x = 1:nrow(t_total),
       ticktype = "detailed")
 ```
 
-\flushleft
+### Aula 2.9
+
+```{r tim3}
+plot(x = aula$num_procs,
+     y = aula$t_total,
+     type = "b",
+     col = rainbow_hcl(length(aula$t_total)),
+     xlab = "Número de procesos",
+     ylab = "Tiempo total por proceso")
+```
 
 ## Evolución del error
 
 En el siguiente gráfico se muestra comparativamente la evolución del error conforme se aumenta el exponente del número de intervalos. El último gráfico muestra únicamente el error en el punto medio.
-
-\centering
 
 ```{r error_plots}
 sequential = scala[scala$num_procs == 1,]
@@ -126,4 +175,3 @@ plot(err$err_middle, type = "b", col = rainbow_hcl(3)[3],
      ylab = "Error en la estimación")
 ```
 
-\flushleft
