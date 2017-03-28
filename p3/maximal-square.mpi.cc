@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <algorithm>
 
 using std::vector;
@@ -11,29 +12,16 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-template <class T>
+template <typename T>
 using matrix = vector<vector<T>>;
 
-namespace type_util {
-  matrix<int> chtoi(matrix<char> m) {
-    matrix<int> r;
-    std::transform(m.begin(), m.end(), std::back_inserter(r), [](vector<char> row) {
-        vector<int> rr;
-        std::transform(row.begin(), row.end(), std::back_inserter(rr), [](char c) { return c - '0'; });
-        return rr;
-      });
-
-    return r;
-  }
-}
-
 namespace io_util {
-  template <class Uint>
+  template <typename Uint>
   matrix<Uint> read_matrix(std::ifstream& in) {
     matrix<Uint> mat;
     vector<Uint> row;
     
-    while (cin.good()) {
+    while (in.good()) {
       char c = in.get();
 
       switch (c) {
@@ -55,7 +43,7 @@ namespace io_util {
     return mat;
   }
 
-  template<class T>
+  template<typename T>
   void operator<<(std::ostream& out, const matrix<T>& mat) {
     out << mat.size() << "x" << mat.at(0).size() << " matrix:" << endl;
     
@@ -70,58 +58,60 @@ namespace io_util {
 }
 
 /*
-template<class T>
-class Proxy {
-  matrix<T>& p_m;
-  int row;
-
-public:
-  Proxy(matrix<T>& p_m, int row) :p_m(p_m), row(row) {}
-
-  T& operator[](int col) {
-    if (0 <= row && row < p_m.size() && 0 <= col && col < p_m[row].size())
-      return p_m[row][col];
-    else
-      return T();
-  }
-  
-  const T& operator[](int col) const {
-    return this->operator[](col);
-  }
-};
-
-template<class T>
-class Wrap {
-  matrix<T>& _m;
-
-  
-public:
-  Wrap(matrix<T>& m) :_m(m) {}
-
-  Proxy<T> operator[](int r) {
-    return Proxy<T>(_m, r);
-  }
-};
-*/
-
-/*
 
 Sobre el tipo Uint:
 - debe ser un tipo de número entero sin signo (unsigned short, unsigned int, unsigned long).
 - determina el tamaño máximo del cuadrado maximal: por ejemplo, usar unsigned short será válido si el lado del cuadrado maximal mide 65535 o menos.
 
 */
-template<class Uint>
-class Solution {
-public:
+template<typename Uint>
+class LocalSolution: public matrix<Uint> {
+  bool locally_solved;
+  Uint max_square_size;
+  
   inline Uint triangle(Uint left, Uint right, Uint up, Uint down) {
     return (std::min(std::min(left, right), up) + 1) * down;
   }
   
-  Uint maximal_square(matrix<Uint>& mat, size_t row_start, size_t row_end) {
-    Uint max = 0;
-    size_t max_col = mat[row_start].size();
+public:
+  LocalSolution(matrix<Uint> m) :matrix<Uint>(m), locally_solved(false), max_square_size(0) {}
+  
+  Uint maximal_square() {
+    if (!locally_solved) {
+      Uint max = 0;
+      size_t max_col = (*this)[0].size();
+    
+      for (size_t i = 0; i < this->size(); i++) {
+        if (max < (*this)[i][0])
+          max = (*this)[i][0];
+      }
 
+      for (size_t j = 0; j < max_col; j++) {
+        if (max < (*this)[0][j])
+          max = (*this)[0][j];
+      }
+    
+      for (size_t i = 1; i < this->size(); i++) {
+        for (size_t j = 1; j < max_col; j++) {
+          (*this)[i][j] = triangle((*this)[i - 1][j], (*this)[i][j - 1], (*this)[i-1][j - 1], (*this)[i][j]);
+        
+          if (max < (*this)[i][j])
+            max = (*this)[i][j];
+        }
+      }
+
+      locally_solved = true;
+      max_square_size = max * max;
+    }
+    
+    return max_square_size;
+  }
+
+  /*
+  Uint maximal_square(size_t row_start = 0, size_t row_end = size()) {
+    Uint max = 0;
+    size_t max_col = (*this)[row_start].size();
+    
     for (size_t i = row_start; i < row_end; i++) {
       if (max < mat[i][0])
         max = mat[i][0];
@@ -142,7 +132,7 @@ public:
     }
     
     return max * max;
-  } 
+    } */
 };
 
 using io_util::operator<<;
@@ -160,14 +150,10 @@ using io_util::operator<<;
 int main(int argc, char* argv[]) {
   std::ifstream in;
 
-  if (argc > 1) {
-    in = std::ifstream(argv[1]);
-  } else {
+  if (argc <= 1) {
     return 1;
   }
   
-  auto m = io_util::read_matrix<unsigned>(in);
-
   /*** Initialize MPI ***/
   //const int MASTER_RANK = 0;
   int size, rank;
@@ -175,15 +161,21 @@ int main(int argc, char* argv[]) {
   MPI_Init(&argc, &argv);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+  cout << "Soy rank " << rank << endl;
 
+  std::stringstream ss;
+  // partition format: matrixname.mat-10p2 (10 processes, current rank 2)
+  ss << argv[1] << "-" << size << "p" << rank;
+  std::string my_filename;
+  ss >> my_filename;
+
+  in = std::ifstream(my_filename);
+  auto m = LocalSolution<unsigned>(io_util::read_matrix<unsigned>(in));
+  
   cout << "Soy rank " << rank << " y mi matriz mide " << m.size() << endl;
-  /*
-  Solution<unsigned> s;
-  size_t
-    row_start = rank * m.size()/size,
-    row_end = (rank < size - 1) ? (rank + 1) * m.size()/size : m[0].size();
-  unsigned mi_sol = s.maximal_square(m, row_start, row_end);
-  cout << "Soy rank " << rank << ", empezando desde " << row_start << ", max_sq = " << mi_sol << endl;*/
+  
+  unsigned mi_sol = m.maximal_square();
+  cout << "Soy rank " << rank << ", max_sq = " << mi_sol << endl;
 
   MPI_Finalize();
 
