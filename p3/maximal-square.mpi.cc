@@ -5,11 +5,10 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <chrono>
 
 using std::vector;
 using std::string;
-using std::cin;
-using std::cout;
 using std::endl;
 
 template <typename T>
@@ -44,16 +43,23 @@ namespace io_util {
   }
 
   template<typename T>
-  void operator<<(std::ostream& out, const matrix<T>& mat) {
+  std::ostream& operator<<(std::ostream& out, const vector<T>& row) {
+    for (const T& e : row) {
+      out << e << " ";
+    }
+
+    return out;
+  }
+
+  template<typename T>
+  std::ostream& operator<<(std::ostream& out, const matrix<T>& mat) {
     out << mat.size() << "x" << mat.at(0).size() << " matrix:" << endl;
     
     for (const auto& row : mat) {
-      for (const T& e : row) {
-        out << e << " ";
-      }
-
-      out << endl;
+      out << row << endl;
     }
+
+    return out;
   }
 }
 
@@ -69,8 +75,8 @@ class LocalSolution: public matrix<Uint> {
   bool locally_solved;
   Uint max_square_size;
   
-  inline Uint triangle(Uint left, Uint right, Uint up, Uint down) {
-    return (std::min(std::min(left, right), up) + 1) * down;
+  inline Uint triangle(const Uint& left, const Uint& right, const Uint& up, const Uint& down) const {
+    return (std::min(std::min(left, right), up) + 1) * (down != 0);
   }
   
 public:
@@ -107,32 +113,51 @@ public:
     return max_square_size;
   }
 
-  /*
-  Uint maximal_square(size_t row_start = 0, size_t row_end = size()) {
-    Uint max = 0;
-    size_t max_col = (*this)[row_start].size();
-    
-    for (size_t i = row_start; i < row_end; i++) {
-      if (max < mat[i][0])
-        max = mat[i][0];
+  Uint use_top_row(const vector<Uint>& top) {
+    if (!locally_solved) {
+      maximal_square();
     }
 
-    for (size_t j = 0; j < max_col; j++) {
-      if (max < mat[row_start][j])
-        max = mat[row_start][j];
-    }
+    Uint max = 0;
+    size_t max_col = (*this)[0].size();
+
+    // vector<bool> is pretty slow. May consider changing it for vector<unsigned char> if storage constraints aren't very strong
+    vector<bool> remaining(top.size(), true);
+    //size_t count = std::count_if(remaining.begin(), remaining.end(), [](const auto& e) { return e != 0; });
+    size_t count = top.size();
     
-    for (size_t i = row_start + 1; i < row_end; i++) {
-      for (size_t j = 1; j < max_col; j++) {
-        mat[i][j] = triangle(mat[i - 1][j], mat[i][j - 1], mat[i-1][j - 1], mat[i][j]);
+    for (size_t j = 0; j < max_col; ++j) {      
+      bool dif = remaining[j] && ((*this)[0][j] == 0);
+      count -= dif;
+      remaining[j] = remaining[j] && ((*this)[0][j] != 0);
+      
+      if (remaining[j]) {
+        (*this)[0][j] = triangle(top[j], (*this)[0][j - 1], top[j - 1], (*this)[0][j]);
         
-        if (max < mat[i][j])
-          max = mat[i][j];
+        if (max < (*this)[0][j])
+          max = (*this)[0][j];
+      }
+    }
+
+    for (size_t i = 1; i < this->size() && count > 0; ++i) {
+      for (size_t j = 0; j < max_col && count > 0; ++j) {
+        bool dif = remaining[j] & ((*this)[i][j] == 0);
+        count -= dif;
+        remaining[j] = remaining[j] & ((*this)[i][j] != 0);
+        
+        if (remaining[j]) {
+          (*this)[i][j] = triangle((*this)[i - 1][j], (*this)[i][j - 1], (*this)[i-1][j - 1], (*this)[i][j]);
+        
+          if (max < (*this)[i][j])
+            max = (*this)[i][j];
+        }
       }
     }
     
-    return max * max;
-    } */
+    max_square_size = std::max(max * max, max_square_size);
+
+    return max_square_size;
+  }
 };
 
 using io_util::operator<<;
@@ -155,13 +180,12 @@ int main(int argc, char* argv[]) {
   }
   
   /*** Initialize MPI ***/
-  //const int MASTER_RANK = 0;
   int size, rank;
+  const int ROOT_RANK = 0;
 
   MPI_Init(&argc, &argv);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  cout << "Soy rank " << rank << endl;
 
   std::stringstream ss;
   // partition format: matrixname.mat-10p2 (10 processes, current rank 2)
@@ -171,11 +195,36 @@ int main(int argc, char* argv[]) {
 
   in = std::ifstream(my_filename);
   auto m = LocalSolution<unsigned>(io_util::read_matrix<unsigned>(in));
+
+  auto start = std::chrono::high_resolution_clock::now();
+  int local_sol = m.maximal_square();
+
+  //MPI_Request handle;
+  MPI_Status status;
   
-  cout << "Soy rank " << rank << " y mi matriz mide " << m.size() << endl;
+  vector<unsigned> top(m[0].size());
   
-  unsigned mi_sol = m.maximal_square();
-  cout << "Soy rank " << rank << ", max_sq = " << mi_sol << endl;
+  if (rank > 0) {
+    MPI_Recv(&top[0], top.size(), MPI_UNSIGNED, rank - 1, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
+    local_sol = m.use_top_row(top);
+  }
+
+  if (rank < size - 1) {
+    MPI_Send(&m[0][0], m[0].size(), MPI_UNSIGNED, rank + 1, 0, MPI_COMM_WORLD);
+  }
+
+  int global_sol;
+  MPI_Reduce(&local_sol, &global_sol, 1, MPI_INT, MPI_MAX, ROOT_RANK, MPI_COMM_WORLD);
+
+  auto end = std::chrono::high_resolution_clock::now();
+
+  std::cerr << "Soy rank " << rank << ", max_sq = " << local_sol << endl;
+  
+  if (rank == ROOT_RANK) {
+    std::cerr << "Solución global: " << global_sol << endl;
+    std::cout << size << "," << size * m.size() << ","
+              << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() << endl;
+  }
 
   MPI_Finalize();
 
