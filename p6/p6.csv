@@ -1,0 +1,325 @@
+type, op, unstream, num_op, matriz, t_acceso, creacion, ejecucion, computacion, glopbyte, gflops
+float, false, false, 1, data/mat-200-200-27k.rua, 0.3828, 5.1651, 0.9620, 6.1270, 0.2500, 0.0044
+float, false, false, 1, data/mat-24000-100-1760k.rua, 2.7175, 2.1988, 0.7742, 2.9731, 0.2500, 0.5920
+float, false, false, 1, data/mat-300-100-22k.rua, 0.1099, 2.1546, 0.4033, 2.5579, 0.2500, 0.0086
+float, false, false, 1, data/mat-32000-200-4320k.rua, 5.6833, 4.5049, 1.5883, 6.0931, 0.2500, 0.7090
+float, false, false, 1, data/mat-4000-200-540k.rua, 0.9140, 4.3449, 0.7439, 5.0888, 0.2500, 0.1061
+float, false, false, 1, data/mat-512000-200-69120k.rua, 98.1061, 4.1842, 19.0143, 23.1985, 0.2500, 2.9795
+float, false, false, 1, data/mat-6000-100-440k.rua, 0.8178, 2.2195, 0.4072, 2.6266, 0.2500, 0.1675
+float, false, false, 1, data/mat-96000-100-7040k.rua, 11.8793, 2.2381, 2.1719, 4.4101, 0.2500, 1.5963
+float, false, false, 1, data/samplematrix.rua, 0.0722, 4.4722, 2.6088, 7.0810, 0.2500, 0.0002
+float, false, false, 10, data/mat-200-200-27k.rua, 0.1688, 4.3099, 0.8040, 5.1138, 2.5000, 0.0528
+float, false, false, 10, data/mat-24000-100-1760k.rua, 2.4714, 2.1906, 0.9930, 3.1836, 2.5000, 5.5284
+float, false, false, 10, data/mat-300-100-22k.rua, 0.2049, 2.1868, 0.3950, 2.5819, 2.5000, 0.0852
+float, false, false, 10, data/mat-32000-200-4320k.rua, 8.4467, 4.3645, 2.0954, 6.4599, 2.5000, 6.6874
+float, false, false, 10, data/mat-4000-200-540k.rua, 0.8996, 4.3446, 0.8077, 5.1524, 2.5000, 1.0481
+float, false, false, 10, data/mat-512000-200-69120k.rua, 95.1624, 4.4112, 27.8383, 32.2495, 2.5000, 21.4329
+float, false, false, 10, data/mat-6000-100-440k.rua, 0.9961, 2.2569, 0.4718, 2.7286, 2.5000, 1.6125
+float, false, false, 10, data/mat-96000-100-7040k.rua, 9.1933, 5.1450, 3.1234, 8.2684, 2.5000, 8.5144
+float, false, false, 10, data/samplematrix.rua, 0.0333, 4.3150, 0.5687, 4.8837, 2.5000, 0.0023
+float, false, false, 100, data/mat-200-200-27k.rua, 0.0997, 4.3062, 0.7574, 5.0636, 25.0000, 0.5332
+float, false, false, 100, data/mat-24000-100-1760k.rua, 2.4707, 2.2934, 3.8809, 6.1743, 25.0000, 28.5054
+float, false, false, 100, data/mat-300-100-22k.rua, 0.2853, 2.1448, 0.4452, 2.5900, 25.0000, 0.8494
+float, false, false, 100, data/mat-32000-200-4320k.rua, 8.3219, 4.4183, 11.5801, 15.9984, 25.0000, 27.0026
+float, false, false, 100, data/mat-4000-200-540k.rua, 1.0020, 4.3268, 1.3462, 5.6731, 25.0000, 9.5187
+float, false, false, 100, data/mat-512000-200-69120k.rua, 99.4660, 4.2182, 131.0953, 135.3135, 25.0000, 51.0814
+float, false, false, 100, data/mat-6000-100-440k.rua, 0.7309, 2.2799, 1.0751, 3.3551, 25.0000, 13.1145
+float, false, false, 100, data/mat-96000-100-7040k.rua, 12.0281, 2.2017, 12.2609, 14.4626, 25.0000, 48.6772
+float, false, false, 100, data/samplematrix.rua, 0.0946, 4.4716, 0.5972, 5.0688, 25.0000, 0.0221
+float, false, false, 1000, data/mat-200-200-27k.rua, 0.1476, 4.6464, 0.7545, 5.4009, 250.0000, 4.9992
+float, false, false, 1000, data/mat-24000-100-1760k.rua, 2.5020, 2.1937, 32.0517, 34.2454, 250.0000, 51.3938
+float, false, false, 1000, data/mat-300-100-22k.rua, 0.1481, 2.1501, 0.6846, 2.8348, 250.0000, 7.7608
+float, false, false, 1000, data/mat-32000-200-4320k.rua, 8.3563, 4.5254, 74.4181, 78.9435, 250.0000, 54.7227
+float, false, false, 1000, data/mat-4000-200-540k.rua, 0.9499, 4.5070, 11.2298, 15.7368, 250.0000, 34.3145
+float, false, false, 1000, data/mat-512000-200-69120k.rua, 98.4503, 4.0297, 1049.5245, 1053.5543, 250.0000, 65.6065
+float, false, false, 1000, data/mat-6000-100-440k.rua, 0.7468, 2.1621, 7.3108, 9.4730, 250.0000, 46.4478
+float, false, false, 1000, data/mat-96000-100-7040k.rua, 11.9156, 5.5979, 108.8818, 114.4796, 250.0000, 61.4956
+float, false, false, 1000, data/samplematrix.rua, 0.2815, 4.4762, 0.7524, 5.2286, 250.0000, 0.2142
+float, SQUARE, false, 1, data/mat-200-200-27k.rua, 0.0974, 8.8123, 0.7908, 9.6031, 0.2500, 0.0028
+float, SQUARE, false, 1, data/mat-24000-100-1760k.rua, 2.7150, 2.2912, 0.7161, 3.0073, 0.2500, 0.5852
+float, SQUARE, false, 1, data/mat-300-100-22k.rua, 2.6669, 2.1972, 0.4143, 2.6114, 0.2500, 0.0084
+float, SQUARE, false, 1, data/mat-32000-200-4320k.rua, 5.9186, 4.2873, 5.6029, 9.8902, 0.2500, 0.4368
+float, SQUARE, false, 1, data/mat-4000-200-540k.rua, 0.9162, 4.3698, 0.7558, 5.1256, 0.2500, 0.1054
+float, SQUARE, false, 1, data/mat-512000-200-69120k.rua, 98.5576, 4.1140, 19.1745, 23.2884, 0.2500, 2.9680
+float, SQUARE, false, 1, data/mat-6000-100-440k.rua, 0.8076, 2.2284, 0.4212, 2.6497, 0.2500, 0.1661
+float, SQUARE, false, 1, data/mat-96000-100-7040k.rua, 11.9878, 2.7408, 4.5173, 7.2581, 0.2500, 0.9699
+float, SQUARE, false, 1, data/samplematrix.rua, 0.0531, 7.5070, 0.5349, 8.0420, 0.2500, 0.0001
+float, SQUARE, false, 10, data/mat-200-200-27k.rua, 0.1523, 4.6628, 2.3702, 7.0330, 2.5000, 0.0384
+float, SQUARE, false, 10, data/mat-24000-100-1760k.rua, 2.5055, 2.2053, 1.0234, 3.2287, 2.5000, 5.4510
+float, SQUARE, false, 10, data/mat-300-100-22k.rua, 2.7348, 2.1707, 0.3991, 2.5698, 2.5000, 0.0856
+float, SQUARE, false, 10, data/mat-32000-200-4320k.rua, 8.3513, 4.4614, 2.1504, 6.6119, 2.5000, 6.5337
+float, SQUARE, false, 10, data/mat-4000-200-540k.rua, 0.8863, 4.3336, 0.7421, 5.0757, 2.5000, 1.0639
+float, SQUARE, false, 10, data/mat-512000-200-69120k.rua, 92.4696, 6.8221, 28.7829, 35.6050, 2.5000, 19.4130
+float, SQUARE, false, 10, data/mat-6000-100-440k.rua, 0.7981, 2.1510, 0.4866, 2.6375, 2.5000, 1.6682
+float, SQUARE, false, 10, data/mat-96000-100-7040k.rua, 9.2792, 4.7811, 3.2157, 7.9968, 2.5000, 8.8035
+float, SQUARE, false, 10, data/samplematrix.rua, 0.1290, 4.7619, 0.5360, 5.2979, 2.5000, 0.0021
+float, SQUARE, false, 100, data/mat-200-200-27k.rua, 0.3152, 4.3812, 0.7366, 5.1178, 25.0000, 0.5276
+float, SQUARE, false, 100, data/mat-24000-100-1760k.rua, 2.5711, 2.2304, 4.0092, 6.2396, 25.0000, 28.2067
+float, SQUARE, false, 100, data/mat-300-100-22k.rua, 0.1065, 2.0760, 0.3932, 2.4692, 25.0000, 0.8910
+float, SQUARE, false, 100, data/mat-32000-200-4320k.rua, 8.4172, 4.5842, 12.1065, 16.6907, 25.0000, 25.8826
+float, SQUARE, false, 100, data/mat-4000-200-540k.rua, 0.9158, 4.3504, 1.4647, 5.8151, 25.0000, 9.2862
+float, SQUARE, false, 100, data/mat-512000-200-69120k.rua, 98.7100, 4.4256, 129.0372, 133.4628, 25.0000, 51.7897
+float, SQUARE, false, 100, data/mat-6000-100-440k.rua, 0.7281, 2.2541, 1.0799, 3.3340, 25.0000, 13.1974
+float, SQUARE, false, 100, data/mat-96000-100-7040k.rua, 9.5978, 2.7110, 12.3158, 15.0268, 25.0000, 46.8495
+float, SQUARE, false, 100, data/samplematrix.rua, 0.0967, 4.9081, 0.9816, 5.8897, 25.0000, 0.0190
+float, SQUARE, false, 1000, data/mat-200-200-27k.rua, 0.2370, 7.1885, 2.8060, 9.9944, 250.0000, 2.7015
+float, SQUARE, false, 1000, data/mat-24000-100-1760k.rua, 2.5332, 2.2844, 37.6822, 39.9667, 250.0000, 44.0367
+float, SQUARE, false, 1000, data/mat-300-100-22k.rua, 0.4739, 2.3156, 0.7271, 3.0427, 250.0000, 7.2304
+float, SQUARE, false, 1000, data/mat-32000-200-4320k.rua, 5.8597, 4.3237, 83.9912, 88.3149, 250.0000, 48.9159
+float, SQUARE, false, 1000, data/mat-4000-200-540k.rua, 0.9100, 4.3366, 12.1197, 16.4563, 250.0000, 32.8141
+float, SQUARE, false, 1000, data/mat-512000-200-69120k.rua, 98.2860, 4.3510, 1063.4330, 1067.7839, 250.0000, 64.7322
+float, SQUARE, false, 1000, data/mat-6000-100-440k.rua, 0.7619, 2.1773, 7.3104, 9.4877, 250.0000, 46.3758
+float, SQUARE, false, 1000, data/mat-96000-100-7040k.rua, 9.4629, 2.2681, 111.4990, 113.7671, 250.0000, 61.8808
+float, SQUARE, false, 1000, data/samplematrix.rua, 0.1068, 4.6575, 0.7579, 5.4154, 250.0000, 0.2068
+float, DIVISION, false, 1, data/mat-200-200-27k.rua, 1.0522, 4.4976, 0.9688, 5.4664, 0.2500, 0.0049
+float, DIVISION, false, 1, data/mat-24000-100-1760k.rua, 2.6491, 2.3095, 0.7084, 3.0179, 0.2500, 0.5832
+float, DIVISION, false, 1, data/mat-300-100-22k.rua, 0.3502, 2.2212, 0.4115, 2.6327, 0.2500, 0.0084
+float, DIVISION, false, 1, data/mat-32000-200-4320k.rua, 8.4045, 4.3510, 1.4338, 5.7848, 0.2500, 0.7468
+float, DIVISION, false, 1, data/mat-4000-200-540k.rua, 0.9028, 4.4516, 0.7615, 5.2131, 0.2500, 0.1036
+float, DIVISION, false, 1, data/mat-512000-200-69120k.rua, 96.0412, 4.1519, 17.1809, 21.3328, 0.2500, 3.2401
+float, DIVISION, false, 1, data/mat-6000-100-440k.rua, 0.7972, 2.2042, 0.4046, 2.6088, 0.2500, 0.1687
+float, DIVISION, false, 1, data/mat-96000-100-7040k.rua, 12.0294, 2.2127, 1.8715, 4.0842, 0.2500, 1.7237
+float, DIVISION, false, 1, data/samplematrix.rua, 0.1249, 5.4802, 0.5865, 6.0667, 0.2500, 0.0002
+float, DIVISION, false, 10, data/mat-200-200-27k.rua, 0.1555, 4.5323, 2.2481, 6.7803, 2.5000, 0.0398
+float, DIVISION, false, 10, data/mat-24000-100-1760k.rua, 2.4753, 2.1984, 0.9351, 3.1334, 2.5000, 5.6168
+float, DIVISION, false, 10, data/mat-300-100-22k.rua, 2.7279, 2.6744, 0.5931, 3.2675, 2.5000, 0.0673
+float, DIVISION, false, 10, data/mat-32000-200-4320k.rua, 5.8916, 7.0414, 1.9855, 9.0270, 2.5000, 4.7857
+float, DIVISION, false, 10, data/mat-4000-200-540k.rua, 0.9796, 4.3449, 0.7409, 5.0858, 2.5000, 1.0618
+float, DIVISION, false, 10, data/mat-512000-200-69120k.rua, 112.0500, 4.3456, 33.1616, 37.5072, 2.5000, 18.4285
+float, DIVISION, false, 10, data/mat-6000-100-440k.rua, 0.7404, 3.0141, 3.0652, 6.0794, 2.5000, 0.7238
+float, DIVISION, false, 10, data/mat-96000-100-7040k.rua, 9.1403, 2.7440, 10.7534, 13.4973, 2.5000, 5.2158
+float, DIVISION, false, 10, data/samplematrix.rua, 2.6921, 8.0385, 3.6289, 11.6674, 2.5000, 0.0010
+float, DIVISION, false, 100, data/mat-200-200-27k.rua, 1.3032, 4.9822, 1.4429, 6.4252, 25.0000, 0.4202
+float, DIVISION, false, 100, data/mat-24000-100-1760k.rua, 2.8985, 2.2672, 12.7474, 15.0146, 25.0000, 11.7220
+float, DIVISION, false, 100, data/mat-300-100-22k.rua, 0.0979, 2.4191, 2.7291, 5.1482, 25.0000, 0.4273
+float, DIVISION, false, 100, data/mat-32000-200-4320k.rua, 5.8234, 7.0852, 9.4344, 16.5196, 25.0000, 26.1508
+float, DIVISION, false, 100, data/mat-4000-200-540k.rua, 0.9770, 4.3583, 1.0722, 5.4304, 25.0000, 9.9440
+float, DIVISION, false, 100, data/mat-512000-200-69120k.rua, 98.1967, 6.9359, 116.7140, 123.6499, 25.0000, 55.8998
+float, DIVISION, false, 100, data/mat-6000-100-440k.rua, 0.7743, 2.1866, 1.0668, 3.2534, 25.0000, 13.5244
+float, DIVISION, false, 100, data/mat-96000-100-7040k.rua, 9.3968, 5.5483, 17.6422, 23.1905, 25.0000, 30.3573
+float, DIVISION, false, 100, data/samplematrix.rua, 0.0978, 4.5957, 0.5770, 5.1727, 25.0000, 0.0217
+float, DIVISION, false, 1000, data/mat-200-200-27k.rua, 0.1474, 4.2791, 0.8840, 5.1631, 250.0000, 5.2294
+float, DIVISION, false, 1000, data/mat-24000-100-1760k.rua, 2.4193, 2.2320, 31.7903, 34.0222, 250.0000, 51.7309
+float, DIVISION, false, 1000, data/mat-300-100-22k.rua, 2.1094, 2.1380, 0.6551, 2.7931, 250.0000, 7.8767
+float, DIVISION, false, 1000, data/mat-32000-200-4320k.rua, 8.4661, 4.5542, 73.6060, 78.1602, 250.0000, 55.2711
+float, DIVISION, false, 1000, data/mat-4000-200-540k.rua, 0.9005, 4.2693, 11.2443, 15.5136, 250.0000, 34.8082
+float, DIVISION, false, 1000, data/mat-512000-200-69120k.rua, 95.7221, 3.9626, 1054.9385, 1058.9010, 250.0000, 65.2752
+float, DIVISION, false, 1000, data/mat-6000-100-440k.rua, 1.0076, 2.2191, 7.0786, 9.2977, 250.0000, 47.3236
+float, DIVISION, false, 1000, data/mat-96000-100-7040k.rua, 9.0586, 2.2468, 112.4002, 114.6470, 250.0000, 61.4059
+float, DIVISION, false, 1000, data/samplematrix.rua, 1.0389, 4.9276, 0.8016, 5.7292, 250.0000, 0.1955
+int, false, false, 1, data/mat-200-200-27k.rua, 0.1874, 4.1350, 0.7201, 4.8551, 0.2500, 0.0056
+int, false, false, 1, data/mat-24000-100-1760k.rua, 2.5355, 2.2501, 0.7517, 3.0018, 0.2500, 0.5863
+int, false, false, 1, data/mat-300-100-22k.rua, 0.0868, 2.3172, 0.3962, 2.7134, 0.2500, 0.0081
+int, false, false, 1, data/mat-32000-200-4320k.rua, 5.9058, 7.0530, 1.4327, 8.4856, 0.2500, 0.5091
+int, false, false, 1, data/mat-4000-200-540k.rua, 0.9010, 4.2712, 0.7472, 5.0184, 0.2500, 0.1076
+int, false, false, 1, data/mat-512000-200-69120k.rua, 98.4954, 4.2829, 18.5667, 22.8496, 0.2500, 3.0250
+int, false, false, 1, data/mat-6000-100-440k.rua, 0.8052, 2.1621, 0.4527, 2.6148, 0.2500, 0.1683
+int, false, false, 1, data/mat-96000-100-7040k.rua, 9.2469, 2.2052, 7.6456, 9.8508, 0.2500, 0.7147
+int, false, false, 1, data/samplematrix.rua, 0.0416, 7.5599, 0.2790, 7.8389, 0.2500, 0.0001
+int, false, false, 10, data/mat-200-200-27k.rua, 0.1440, 4.4934, 2.4007, 6.8941, 2.5000, 0.0392
+int, false, false, 10, data/mat-24000-100-1760k.rua, 2.5191, 2.2032, 0.9537, 3.1569, 2.5000, 5.5750
+int, false, false, 10, data/mat-300-100-22k.rua, 1.3690, 2.1528, 0.3827, 2.5355, 2.5000, 0.0868
+int, false, false, 10, data/mat-32000-200-4320k.rua, 5.6982, 4.3418, 2.0138, 6.3556, 2.5000, 6.7972
+int, false, false, 10, data/mat-4000-200-540k.rua, 0.9588, 4.3747, 0.7482, 5.1229, 2.5000, 1.0541
+int, false, false, 10, data/mat-512000-200-69120k.rua, 102.5187, 4.4865, 26.0499, 30.5363, 2.5000, 22.6353
+int, false, false, 10, data/mat-6000-100-440k.rua, 0.7482, 2.2632, 2.7422, 5.0054, 2.5000, 0.8790
+int, false, false, 10, data/mat-96000-100-7040k.rua, 9.3945, 4.9775, 3.8661, 8.8436, 2.5000, 7.9605
+int, false, false, 10, data/samplematrix.rua, 3.7384, 3.9322, 0.4855, 4.4177, 2.5000, 0.0025
+int, false, false, 100, data/mat-200-200-27k.rua, 1.1268, 4.5617, 0.7644, 5.3261, 25.0000, 0.5069
+int, false, false, 100, data/mat-24000-100-1760k.rua, 2.4764, 2.3491, 3.6305, 5.9796, 25.0000, 29.4332
+int, false, false, 100, data/mat-300-100-22k.rua, 0.0831, 4.9369, 0.4194, 5.3563, 25.0000, 0.4107
+int, false, false, 100, data/mat-32000-200-4320k.rua, 8.4142, 7.1076, 11.0181, 18.1257, 25.0000, 23.8335
+int, false, false, 100, data/mat-4000-200-540k.rua, 0.9283, 5.4928, 3.6705, 9.1633, 25.0000, 5.8931
+int, false, false, 100, data/mat-512000-200-69120k.rua, 100.5167, 4.4884, 124.0972, 128.5856, 25.0000, 53.7541
+int, false, false, 100, data/mat-6000-100-440k.rua, 0.8981, 2.4850, 2.3474, 4.8324, 25.0000, 9.1052
+int, false, false, 100, data/mat-96000-100-7040k.rua, 9.3104, 2.2342, 15.5207, 17.7549, 25.0000, 39.6510
+int, false, false, 100, data/samplematrix.rua, 2.3450, 4.6711, 0.5723, 5.2434, 25.0000, 0.0214
+int, false, false, 1000, data/mat-200-200-27k.rua, 0.3413, 4.3165, 4.4029, 8.7194, 250.0000, 3.0965
+int, false, false, 1000, data/mat-24000-100-1760k.rua, 2.4759, 2.2165, 31.2865, 33.5029, 250.0000, 52.5327
+int, false, false, 1000, data/mat-300-100-22k.rua, 2.6275, 2.1663, 0.4693, 2.6356, 250.0000, 8.3472
+int, false, false, 1000, data/mat-32000-200-4320k.rua, 5.9673, 4.5242, 77.2105, 81.7347, 250.0000, 52.8540
+int, false, false, 1000, data/mat-4000-200-540k.rua, 0.9401, 4.4190, 11.0872, 15.5062, 250.0000, 34.8248
+int, false, false, 1000, data/mat-512000-200-69120k.rua, 98.9018, 4.3987, 1048.2627, 1052.6614, 250.0000, 65.6621
+int, false, false, 1000, data/mat-6000-100-440k.rua, 0.8280, 2.2480, 7.3098, 9.5578, 250.0000, 46.0356
+int, false, false, 1000, data/mat-96000-100-7040k.rua, 14.6417, 2.6650, 108.6460, 111.3111, 250.0000, 63.2462
+int, false, false, 1000, data/samplematrix.rua, 0.0842, 4.4760, 0.8631, 5.3391, 250.0000, 0.2098
+int, SQUARE, false, 1, data/mat-200-200-27k.rua, 0.0852, 4.3785, 1.5783, 5.9568, 0.2500, 0.0045
+int, SQUARE, false, 1, data/mat-24000-100-1760k.rua, 2.7680, 2.3397, 0.7073, 3.0470, 0.2500, 0.5776
+int, SQUARE, false, 1, data/mat-300-100-22k.rua, 0.1224, 2.1877, 3.8148, 6.0025, 0.2500, 0.0037
+int, SQUARE, false, 1, data/mat-32000-200-4320k.rua, 5.5347, 4.3962, 1.4667, 5.8629, 0.2500, 0.7368
+int, SQUARE, false, 1, data/mat-4000-200-540k.rua, 0.9154, 4.3718, 0.7504, 5.1222, 0.2500, 0.1054
+int, SQUARE, false, 1, data/mat-512000-200-69120k.rua, 97.6904, 6.8055, 18.9490, 25.7545, 0.2500, 2.6838
+int, SQUARE, false, 1, data/mat-6000-100-440k.rua, 0.8192, 2.2101, 0.4100, 2.6201, 0.2500, 0.1679
+int, SQUARE, false, 1, data/mat-96000-100-7040k.rua, 9.3148, 2.3707, 4.2444, 6.6151, 0.2500, 1.0642
+int, SQUARE, false, 1, data/samplematrix.rua, 0.0584, 7.3523, 0.6044, 7.9567, 0.2500, 0.0001
+int, SQUARE, false, 10, data/mat-200-200-27k.rua, 0.1303, 4.4883, 2.6308, 7.1190, 2.5000, 0.0379
+int, SQUARE, false, 10, data/mat-24000-100-1760k.rua, 2.4606, 2.1853, 1.0195, 3.2048, 2.5000, 5.4918
+int, SQUARE, false, 10, data/mat-300-100-22k.rua, 0.0873, 2.1364, 0.4006, 2.5369, 2.5000, 0.0867
+int, SQUARE, false, 10, data/mat-32000-200-4320k.rua, 5.9103, 4.5095, 4.4859, 8.9954, 2.5000, 4.8025
+int, SQUARE, false, 10, data/mat-4000-200-540k.rua, 0.9353, 4.4344, 0.7720, 5.2064, 2.5000, 1.0372
+int, SQUARE, false, 10, data/mat-512000-200-69120k.rua, 96.7263, 6.6506, 29.2130, 35.8636, 2.5000, 19.2730
+int, SQUARE, false, 10, data/mat-6000-100-440k.rua, 0.7545, 2.2201, 0.4878, 2.7079, 2.5000, 1.6249
+int, SQUARE, false, 10, data/mat-96000-100-7040k.rua, 12.0045, 2.2936, 3.0922, 5.3858, 2.5000, 13.0714
+int, SQUARE, false, 10, data/samplematrix.rua, 0.0415, 4.5767, 0.5711, 5.1478, 2.5000, 0.0022
+int, SQUARE, false, 100, data/mat-200-200-27k.rua, 0.1628, 4.6494, 1.0985, 5.7479, 25.0000, 0.4697
+int, SQUARE, false, 100, data/mat-24000-100-1760k.rua, 2.6213, 2.3738, 3.7444, 6.1182, 25.0000, 28.7664
+int, SQUARE, false, 100, data/mat-300-100-22k.rua, 0.0888, 2.2280, 4.5620, 6.7900, 25.0000, 0.3240
+int, SQUARE, false, 100, data/mat-32000-200-4320k.rua, 5.6127, 4.5510, 12.8719, 17.4229, 25.0000, 24.7949
+int, SQUARE, false, 100, data/mat-4000-200-540k.rua, 0.9222, 4.4953, 1.3224, 5.8177, 25.0000, 9.2820
+int, SQUARE, false, 100, data/mat-512000-200-69120k.rua, 95.8273, 6.8337, 125.9731, 132.8068, 25.0000, 52.0455
+int, SQUARE, false, 100, data/mat-6000-100-440k.rua, 0.8328, 2.1296, 1.0713, 3.2008, 25.0000, 13.7464
+int, SQUARE, false, 100, data/mat-96000-100-7040k.rua, 9.5331, 2.3318, 13.5577, 15.8895, 25.0000, 44.3060
+int, SQUARE, false, 100, data/samplematrix.rua, 0.1103, 4.4800, 0.5837, 5.0637, 25.0000, 0.0221
+int, SQUARE, false, 1000, data/mat-200-200-27k.rua, 2.7292, 4.3116, 0.8928, 5.2044, 250.0000, 5.1879
+int, SQUARE, false, 1000, data/mat-24000-100-1760k.rua, 2.4694, 2.1924, 29.8207, 32.0131, 250.0000, 54.9775
+int, SQUARE, false, 1000, data/mat-300-100-22k.rua, 0.1425, 2.1113, 0.6514, 2.7627, 250.0000, 7.9633
+int, SQUARE, false, 1000, data/mat-32000-200-4320k.rua, 5.5357, 6.7766, 82.4683, 89.2449, 250.0000, 48.4061
+int, SQUARE, false, 1000, data/mat-4000-200-540k.rua, 0.9096, 4.3020, 10.0506, 14.3526, 250.0000, 37.6238
+int, SQUARE, false, 1000, data/mat-512000-200-69120k.rua, 108.5497, 4.3353, 1058.4095, 1062.7448, 250.0000, 65.0391
+int, SQUARE, false, 1000, data/mat-6000-100-440k.rua, 0.7568, 2.1923, 7.1851, 9.3774, 250.0000, 46.9214
+int, SQUARE, false, 1000, data/mat-96000-100-7040k.rua, 12.3673, 2.2180, 110.6039, 112.8220, 250.0000, 62.3992
+int, SQUARE, false, 1000, data/samplematrix.rua, 0.0869, 4.4657, 0.7395, 5.2052, 250.0000, 0.2152
+int, DIVISION, false, 1, data/mat-200-200-27k.rua, 1.6009, 4.7648, 0.7387, 5.5036, 0.2500, 0.0049
+int, DIVISION, false, 1, data/mat-24000-100-1760k.rua, 2.4460, 2.2039, 0.7250, 2.9289, 0.2500, 0.6009
+int, DIVISION, false, 1, data/mat-300-100-22k.rua, 0.0829, 2.3728, 0.3955, 2.7683, 0.2500, 0.0079
+int, DIVISION, false, 1, data/mat-32000-200-4320k.rua, 5.6020, 4.4060, 1.4685, 5.8746, 0.2500, 0.7354
+int, DIVISION, false, 1, data/mat-4000-200-540k.rua, 0.8991, 4.3344, 0.7397, 5.0741, 0.2500, 0.1064
+int, DIVISION, false, 1, data/mat-512000-200-69120k.rua, 96.4524, 4.2175, 17.1787, 21.3962, 0.2500, 3.2305
+int, DIVISION, false, 1, data/mat-6000-100-440k.rua, 0.8060, 2.1963, 0.4468, 2.6431, 0.2500, 0.1665
+int, DIVISION, false, 1, data/mat-96000-100-7040k.rua, 9.1838, 3.1817, 6.5932, 9.7749, 0.2500, 0.7202
+int, DIVISION, false, 1, data/samplematrix.rua, 0.1262, 4.5036, 0.5616, 5.0653, 0.2500, 0.0002
+int, DIVISION, false, 10, data/mat-200-200-27k.rua, 2.7109, 4.3022, 0.7290, 5.0311, 2.5000, 0.0537
+int, DIVISION, false, 10, data/mat-24000-100-1760k.rua, 2.5796, 2.2042, 0.9409, 3.1451, 2.5000, 5.5960
+int, DIVISION, false, 10, data/mat-300-100-22k.rua, 0.0878, 2.6064, 2.2122, 4.8185, 2.5000, 0.0457
+int, DIVISION, false, 10, data/mat-32000-200-4320k.rua, 5.8076, 6.9274, 1.9857, 8.9131, 2.5000, 4.8468
+int, DIVISION, false, 10, data/mat-4000-200-540k.rua, 0.8863, 4.3678, 0.7230, 5.0908, 2.5000, 1.0607
+int, DIVISION, false, 10, data/mat-512000-200-69120k.rua, 96.4417, 6.9056, 26.0669, 32.9725, 2.5000, 20.9629
+int, DIVISION, false, 10, data/mat-6000-100-440k.rua, 0.7626, 2.1641, 0.4701, 2.6342, 2.5000, 1.6703
+int, DIVISION, false, 10, data/mat-96000-100-7040k.rua, 12.0987, 2.1223, 2.9016, 5.0240, 2.5000, 14.0128
+int, DIVISION, false, 10, data/samplematrix.rua, 0.0404, 4.7338, 0.5713, 5.3051, 2.5000, 0.0021
+int, DIVISION, false, 100, data/mat-200-200-27k.rua, 0.1537, 4.4811, 2.0254, 6.5065, 25.0000, 0.4150
+int, DIVISION, false, 100, data/mat-24000-100-1760k.rua, 2.8224, 2.1955, 3.3109, 5.5064, 25.0000, 31.9626
+int, DIVISION, false, 100, data/mat-300-100-22k.rua, 0.0860, 2.3371, 0.3830, 2.7201, 25.0000, 0.8088
+int, DIVISION, false, 100, data/mat-32000-200-4320k.rua, 5.6564, 4.3559, 11.2930, 15.6489, 25.0000, 27.6058
+int, DIVISION, false, 100, data/mat-4000-200-540k.rua, 0.9116, 4.3090, 1.2452, 5.5542, 25.0000, 9.7223
+int, DIVISION, false, 100, data/mat-512000-200-69120k.rua, 93.6215, 4.2557, 129.5525, 133.8082, 25.0000, 51.6560
+int, DIVISION, false, 100, data/mat-6000-100-440k.rua, 0.8296, 2.1855, 1.0837, 3.2692, 25.0000, 13.4588
+int, DIVISION, false, 100, data/mat-96000-100-7040k.rua, 11.2144, 2.2526, 13.3179, 15.5705, 25.0000, 45.2136
+int, DIVISION, false, 100, data/samplematrix.rua, 0.1037, 4.5062, 0.6074, 5.1137, 25.0000, 0.0219
+int, DIVISION, false, 1000, data/mat-200-200-27k.rua, 0.3142, 4.5448, 4.9081, 9.4528, 250.0000, 2.8563
+int, DIVISION, false, 1000, data/mat-24000-100-1760k.rua, 2.4830, 2.2413, 31.9981, 34.2395, 250.0000, 51.4026
+int, DIVISION, false, 1000, data/mat-300-100-22k.rua, 0.1292, 2.1622, 0.6643, 2.8264, 250.0000, 7.7837
+int, DIVISION, false, 1000, data/mat-32000-200-4320k.rua, 8.2974, 4.7035, 74.3324, 79.0358, 250.0000, 54.6588
+int, DIVISION, false, 1000, data/mat-4000-200-540k.rua, 1.0624, 4.3106, 9.2152, 13.5258, 250.0000, 39.9237
+int, DIVISION, false, 1000, data/mat-512000-200-69120k.rua, 97.9720, 4.2425, 1047.5836, 1051.8262, 250.0000, 65.7143
+int, DIVISION, false, 1000, data/mat-6000-100-440k.rua, 0.8531, 2.1947, 7.2903, 9.4851, 250.0000, 46.3888
+int, DIVISION, false, 1000, data/mat-96000-100-7040k.rua, 14.6003, 2.2388, 109.5727, 111.8115, 250.0000, 62.9631
+int, DIVISION, false, 1000, data/samplematrix.rua, 0.0986, 4.4604, 0.7416, 5.2020, 250.0000, 0.2153
+double, false, false, 1, data/mat-200-200-27k.rua, 
+double, false, false, 1, data/mat-24000-100-1760k.rua, 4.9526, 2.2596, 0.8611, 3.1207, 0.1250, 0.5640
+double, false, false, 1, data/mat-300-100-22k.rua, 
+double, false, false, 1, data/mat-32000-200-4320k.rua, 
+double, false, false, 1, data/mat-4000-200-540k.rua, 1.5857, 4.3117, 0.7427, 5.0545, 0.1250, 0.1068
+double, false, false, 1, data/mat-512000-200-69120k.rua, 183.7166, 4.2311, 21.9973, 26.2284, 0.1250, 2.6353
+double, false, false, 1, data/mat-6000-100-440k.rua, 1.3245, 2.1936, 0.4202, 2.6137, 0.1250, 0.1683
+double, false, false, 1, data/mat-96000-100-7040k.rua, 
+double, false, false, 1, data/samplematrix.rua, 
+double, false, false, 10, data/mat-200-200-27k.rua, 
+double, false, false, 10, data/mat-24000-100-1760k.rua, 4.8897, 2.3035, 2.0000, 4.3035, 1.2500, 4.0897
+double, false, false, 10, data/mat-300-100-22k.rua, 
+double, false, false, 10, data/mat-32000-200-4320k.rua, 11.4332, 7.4118, 6.7569, 14.1687, 1.2500, 3.0490
+double, false, false, 10, data/mat-4000-200-540k.rua, 1.5427, 4.4044, 0.7938, 5.1983, 1.2500, 1.0388
+double, false, false, 10, data/mat-512000-200-69120k.rua, 185.0889, 4.1384, 57.0494, 61.1878, 1.2500, 11.2964
+double, false, false, 10, data/mat-6000-100-440k.rua, 1.3671, 2.1661, 0.6144, 2.7805, 1.2500, 1.5825
+double, false, false, 10, data/mat-96000-100-7040k.rua, 19.9385, 2.2625, 5.9581, 8.2206, 1.2500, 8.5638
+double, false, false, 10, data/samplematrix.rua, 
+double, false, false, 100, data/mat-200-200-27k.rua, 
+double, false, false, 100, data/mat-24000-100-1760k.rua, 4.8596, 2.5288, 13.7672, 16.2960, 12.5000, 10.8002
+double, false, false, 100, data/mat-300-100-22k.rua, 
+double, false, false, 100, data/mat-32000-200-4320k.rua, 13.8325, 4.4932, 32.2531, 36.7463, 12.5000, 11.7563
+double, false, false, 100, data/mat-4000-200-540k.rua, 1.7121, 4.5580, 3.8361, 8.3941, 12.5000, 6.4331
+double, false, false, 100, data/mat-512000-200-69120k.rua, 192.0313, 3.9514, 436.5567, 440.5081, 12.5000, 15.6910
+double, false, false, 100, data/mat-6000-100-440k.rua, 1.3036, 2.1713, 3.0098, 5.1811, 12.5000, 8.4924
+double, false, false, 100, data/mat-96000-100-7040k.rua, 
+double, false, false, 100, data/samplematrix.rua, 
+double, false, false, 1000, data/mat-200-200-27k.rua, 
+double, false, false, 1000, data/mat-24000-100-1760k.rua, 5.9694, 4.2649, 110.4846, 114.7495, 125.0000, 15.3378
+double, false, false, 1000, data/mat-300-100-22k.rua, 
+double, false, false, 1000, data/mat-32000-200-4320k.rua, 13.9269, 4.3183, 271.4447, 275.7630, 125.0000, 15.6656
+double, false, false, 1000, data/mat-4000-200-540k.rua, 1.5814, 4.4028, 40.6028, 45.0057, 125.0000, 11.9985
+double, false, false, 1000, data/mat-512000-200-69120k.rua, 190.6406, 4.3521, 4159.1846, 4163.5366, 125.0000, 16.6013
+double, false, false, 1000, data/mat-6000-100-440k.rua, 1.3034, 2.2639, 29.6273, 31.8912, 125.0000, 13.7969
+double, false, false, 1000, data/mat-96000-100-7040k.rua, 20.4399, 2.4129, 426.2548, 428.6677, 125.0000, 16.4230
+double, false, false, 1000, data/samplematrix.rua, 
+double, SQUARE, false, 1, data/mat-200-200-27k.rua, 
+double, SQUARE, false, 1, data/mat-24000-100-1760k.rua, 4.9050, 2.2457, 0.8308, 3.0765, 0.1250, 0.5721
+double, SQUARE, false, 1, data/mat-300-100-22k.rua, 
+double, SQUARE, false, 1, data/mat-32000-200-4320k.rua, 
+double, SQUARE, false, 1, data/mat-4000-200-540k.rua, 1.5461, 4.3634, 0.7387, 5.1020, 0.1250, 0.1058
+double, SQUARE, false, 1, data/mat-512000-200-69120k.rua, 184.0419, 4.2605, 21.8963, 26.1568, 0.1250, 2.6425
+double, SQUARE, false, 1, data/mat-6000-100-440k.rua, 1.3779, 5.0954, 0.4113, 5.5068, 0.1250, 0.0799
+double, SQUARE, false, 1, data/mat-96000-100-7040k.rua, 
+double, SQUARE, false, 1, data/samplematrix.rua, 
+double, SQUARE, false, 10, data/mat-200-200-27k.rua, 
+double, SQUARE, false, 10, data/mat-24000-100-1760k.rua, 4.9032, 2.2332, 1.7540, 3.9872, 1.2500, 4.4141
+double, SQUARE, false, 10, data/mat-300-100-22k.rua, 
+double, SQUARE, false, 10, data/mat-32000-200-4320k.rua, 
+double, SQUARE, false, 10, data/mat-4000-200-540k.rua, 1.5342, 4.3374, 0.7660, 5.1034, 1.2500, 1.0581
+double, SQUARE, false, 10, data/mat-512000-200-69120k.rua, 184.5011, 4.2652, 57.1837, 61.4489, 1.2500, 11.2484
+double, SQUARE, false, 10, data/mat-6000-100-440k.rua, 1.2644, 2.1808, 0.6549, 2.8357, 1.2500, 1.5516
+double, SQUARE, false, 10, data/mat-96000-100-7040k.rua, 
+double, SQUARE, false, 10, data/samplematrix.rua, 
+double, SQUARE, false, 100, data/mat-200-200-27k.rua, 
+double, SQUARE, false, 100, data/mat-24000-100-1760k.rua, 4.8065, 2.6371, 13.6868, 16.3238, 12.5000, 10.7818
+double, SQUARE, false, 100, data/mat-300-100-22k.rua, 
+double, SQUARE, false, 100, data/mat-32000-200-4320k.rua, 
+double, SQUARE, false, 100, data/mat-4000-200-540k.rua, 
+double, SQUARE, false, 100, data/mat-512000-200-69120k.rua, 186.5038, 4.0517, 425.3328, 429.3845, 12.5000, 16.0975
+double, SQUARE, false, 100, data/mat-6000-100-440k.rua, 1.2890, 2.1477, 3.0372, 5.1848, 12.5000, 8.4863
+double, SQUARE, false, 100, data/mat-96000-100-7040k.rua, 22.4916, 2.2367, 45.9104, 48.1471, 12.5000, 14.6219
+double, SQUARE, false, 100, data/samplematrix.rua, 
+double, SQUARE, false, 1000, data/mat-200-200-27k.rua, 
+double, SQUARE, false, 1000, data/mat-24000-100-1760k.rua, 4.6438, 2.2884, 111.7262, 114.0146, 125.0000, 15.4366
+double, SQUARE, false, 1000, data/mat-300-100-22k.rua, 
+double, SQUARE, false, 1000, data/mat-32000-200-4320k.rua, 11.1104, 7.0831, 267.6842, 274.7673, 125.0000, 15.7224
+double, SQUARE, false, 1000, data/mat-4000-200-540k.rua, 1.4995, 4.3293, 40.5054, 44.8348, 125.0000, 12.0442
+double, SQUARE, false, 1000, data/mat-512000-200-69120k.rua, 191.8085, 4.2614, 4176.6772, 4180.9385, 125.0000, 16.5322
+double, SQUARE, false, 1000, data/mat-6000-100-440k.rua, 1.2846, 2.2427, 29.6092, 31.8519, 125.0000, 13.8139
+double, SQUARE, false, 1000, data/mat-96000-100-7040k.rua, 
+double, SQUARE, false, 1000, data/samplematrix.rua, 
+double, DIVISION, false, 1, data/mat-200-200-27k.rua, 
+double, DIVISION, false, 1, data/mat-24000-100-1760k.rua, 
+double, DIVISION, false, 1, data/mat-300-100-22k.rua, 
+double, DIVISION, false, 1, data/mat-32000-200-4320k.rua, 
+double, DIVISION, false, 1, data/mat-4000-200-540k.rua, 1.5805, 4.3138, 0.7573, 5.0711, 0.1250, 0.1065
+double, DIVISION, false, 1, data/mat-512000-200-69120k.rua, 182.8060, 3.9342, 20.5985, 24.5327, 0.1250, 2.8175
+double, DIVISION, false, 1, data/mat-6000-100-440k.rua, 1.3749, 2.1857, 0.4043, 2.5900, 0.1250, 0.1699
+double, DIVISION, false, 1, data/mat-96000-100-7040k.rua, 
+double, DIVISION, false, 1, data/samplematrix.rua, 
+double, DIVISION, false, 10, data/mat-200-200-27k.rua, 
+double, DIVISION, false, 10, data/mat-24000-100-1760k.rua, 5.0255, 2.3022, 2.1289, 4.4311, 1.2500, 3.9719
+double, DIVISION, false, 10, data/mat-300-100-22k.rua, 
+double, DIVISION, false, 10, data/mat-32000-200-4320k.rua, 10.9994, 4.3512, 8.6366, 12.9878, 1.2500, 3.3262
+double, DIVISION, false, 10, data/mat-4000-200-540k.rua, 1.5842, 4.3528, 0.7666, 5.1194, 1.2500, 1.0548
+double, DIVISION, false, 10, data/mat-512000-200-69120k.rua, 183.9839, 4.3044, 62.3860, 66.6904, 1.2500, 10.3643
+double, DIVISION, false, 10, data/mat-6000-100-440k.rua, 1.3460, 2.1337, 0.6198, 2.7535, 1.2500, 1.5980
+double, DIVISION, false, 10, data/mat-96000-100-7040k.rua, 
+double, DIVISION, false, 10, data/samplematrix.rua, 
+double, DIVISION, false, 100, data/mat-200-200-27k.rua, 
+double, DIVISION, false, 100, data/mat-24000-100-1760k.rua, 4.8760, 2.2259, 13.6936, 15.9195, 12.5000, 11.0556
+double, DIVISION, false, 100, data/mat-300-100-22k.rua, 
+double, DIVISION, false, 100, data/mat-32000-200-4320k.rua, 
+double, DIVISION, false, 100, data/mat-4000-200-540k.rua, 1.5912, 4.3555, 3.7537, 8.1091, 12.5000, 6.6592
+double, DIVISION, false, 100, data/mat-512000-200-69120k.rua, 186.4667, 4.1939, 425.4937, 429.6876, 12.5000, 16.0861
+double, DIVISION, false, 100, data/mat-6000-100-440k.rua, 1.2667, 2.1743, 3.0779, 5.2523, 12.5000, 8.3774
+double, DIVISION, false, 100, data/mat-96000-100-7040k.rua, 23.6195, 2.2262, 45.8845, 48.1107, 12.5000, 14.6329
+double, DIVISION, false, 100, data/samplematrix.rua, 
+double, DIVISION, false, 1000, data/mat-200-200-27k.rua, 
+double, DIVISION, false, 1000, data/mat-24000-100-1760k.rua, 4.7361, 2.2865, 111.6645, 113.9510, 125.0000, 15.4452
+double, DIVISION, false, 1000, data/mat-300-100-22k.rua, 
+double, DIVISION, false, 1000, data/mat-32000-200-4320k.rua, 11.1509, 4.4320, 269.2493, 273.6813, 125.0000, 15.7848
+double, DIVISION, false, 1000, data/mat-4000-200-540k.rua, 2.0334, 6.8023, 39.9063, 46.7086, 125.0000, 11.5610
+double, DIVISION, false, 1000, data/mat-512000-200-69120k.rua, 199.9530, 3.9985, 4175.6406, 4179.6392, 125.0000, 16.5373
+double, DIVISION, false, 1000, data/mat-6000-100-440k.rua, 1.9907, 3.4204, 29.6062, 33.0266, 125.0000, 13.3226
+double, DIVISION, false, 1000, data/mat-96000-100-7040k.rua, 
+double, DIVISION, false, 1000, data/samplematrix.rua, 

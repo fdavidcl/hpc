@@ -1,0 +1,48 @@
+---
+title: "Práctica 6"
+author: "David Charte"
+date: "Arquitecturas y Computación de Altas Prestaciones - UGR"
+output: 
+  pdf_document: 
+    number_sections: yes
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.width=6, fig.height=6, out.width='.5\\textwidth', out.height='.5\\textwidth')
+library(plotly)
+library(colorspace)
+```
+
+# Propiedades del dispositivo
+
+\small
+
+~~~
+Dispositivo 0
+  Nombre: GeForce GT 750M
+  Número de multiprocesadores: 2
+  Frecuencia de reloj: 967000 KHz
+  Tamaño del warp: 32
+  Máximo hebras por bloque: 1024
+  Memoria global total: 2098724864 B
+  Frecuencia de reloj de memoria: 2500000 KHz
+  Ancho del bus de memoria: 128 b
+  Número de revisión: 3.0
+~~~
+
+\normalsize
+
+# Parámetros utilizados
+
+| Tipo de dato | Operación     | Número de operaciones | Número de streams | Matriz |
+|:-------------|:--------------|:-------|:-------|:-|
+|float         |original (`*=`)| |Stream único||
+|int           |división (`/=`)| |`ncol` streams||
+|double        |cuadrado       | | ||
+
+# Resultados obtenidos
+
+```{r}
+out <- read.csv("p6.csv", header = TRUE)
+knitr::kable(out)
+```
+
